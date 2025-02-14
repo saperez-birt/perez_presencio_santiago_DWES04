@@ -1,9 +1,7 @@
--- 1️⃣ Crear la base de datos
 DROP DATABASE IF EXISTS portal_videojuegos;
 CREATE DATABASE portal_videojuegos;
 USE portal_videojuegos;
 
--- 2️⃣ Crear la tabla de usuarios
 CREATE TABLE usuarios (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
@@ -13,7 +11,6 @@ CREATE TABLE usuarios (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
--- 3️⃣ Crear la tabla de videojuegos
 CREATE TABLE videojuegos (
     id_videojuego INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
@@ -25,7 +22,6 @@ CREATE TABLE videojuegos (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
--- 4️⃣ Crear la tabla intermedia para la biblioteca de videojuegos
 CREATE TABLE biblioteca_videojuegos (
     id_usuario INT NOT NULL,
     id_videojuego INT NOT NULL,
@@ -37,14 +33,12 @@ CREATE TABLE biblioteca_videojuegos (
     FOREIGN KEY (id_videojuego) REFERENCES videojuegos(id_videojuego) ON DELETE CASCADE
 );
 
--- 5️⃣ Insertar usuarios
 INSERT INTO usuarios (nombre, apellidos, email) VALUES 
 ('Carlos', 'Pérez', 'carlos.perez@example.com'),
 ('Laura', 'González', 'laura.gonzalez@example.com'),
 ('David', 'Martínez', 'david.martinez@example.com'),
 ('Sofía', 'López', 'sofia.lopez@example.com');
 
--- 6️⃣ Insertar videojuegos más populares de 2022
 INSERT INTO videojuegos (nombre, descripcion, precio, stock, estudio) VALUES
 ('Elden Ring', 'Un RPG de acción en un vasto mundo abierto.', 59.99, 50, 'estudio'),
 ('God of War: Ragnarok', 'Kratos y Atreus enfrentan su destino.', 69.99, 40, 'estudio'),
@@ -57,7 +51,6 @@ INSERT INTO videojuegos (nombre, descripcion, precio, stock, estudio) VALUES
 ('Mario + Rabbids Sparks of Hope', 'Mario y Rabbids salvan la galaxia.', 59.99, 40, 'estudio'),
 ('Pokémon Legends: Arceus', 'Explora el mundo Pokémon en el pasado.', 59.99, 50, 'estudio');
 
--- 7️⃣ Asignar videojuegos a los usuarios
 INSERT INTO biblioteca_videojuegos (id_usuario, id_videojuego) VALUES
 (1, 1),
 (1, 5),
